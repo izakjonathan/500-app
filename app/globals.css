@@ -925,3 +925,38 @@ input {
   border-radius:22px !important;
   min-height:100% !important;
 }
+
+
+/* v49 sync */
+
+.pill{
+  position:relative;
+}
+
+.sync-dot{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#82efaa;
+  box-shadow:0 0 12px currentColor;
+}
+
+.sync-loading,
+.sync-syncing{
+  background:#ffd36b;
+  color:#ffd36b;
+}
+
+.sync-synced{
+  background:#82efaa;
+  color:#82efaa;
+}
+
+.sync-offline{
+  background:#ff7b7b;
+  color:#ff7b7b;
+}

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { CURRENT_GAME_ID, supabase } from "../lib/supabaseClient";
 
 type Player = { id: string; name: string; color: string };
 type Round = { id: string; scores: Record<string, number>; closedBy: string | null; starterId: string; deleted?: boolean };
@@ -48,10 +49,13 @@ export default function RummyApp() {
   const [customTarget, setCustomTarget] = useState("");
   const [gameName, setGameName] = useState("");
   const [names, setNames] = useState<string[]>(DEFAULT_PLAYERS.map((p) => p.name));
+  const [syncStatus, setSyncStatus] = useState<"loading" | "synced" | "syncing" | "offline">("loading");
+  const cloudLoaded = useRef(false);
+  const applyingRemote = useRef(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.window.history.scrollRestoration = "manual";
+      window.history.scrollRestoration = "manual";
       window.scrollTo(0, 0);
     }
   }, []);
@@ -67,6 +71,96 @@ export default function RummyApp() {
 
   useEffect(() => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(game)); } catch {} }, [game]);
   useEffect(() => { try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch {} }, [history]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadCloud() {
+      const { data } = await supabase
+        .from("rummy_current_game")
+        .select("game_state")
+        .eq("id", CURRENT_GAME_ID)
+        .maybeSingle();
+
+      if (!mounted) return;
+
+      if (data?.game_state) {
+        applyingRemote.current = true;
+        setGame(data.game_state as Game);
+
+        setTimeout(() => {
+          applyingRemote.current = false;
+        }, 0);
+      }
+
+      cloudLoaded.current = true;
+      setSyncStatus("synced");
+    }
+
+    loadCloud();
+
+    const channel = supabase
+      .channel("rummy-live")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "rummy_current_game",
+          filter: `id=eq.${CURRENT_GAME_ID}`
+        },
+        (payload) => {
+          const row = payload.new as { game_state?: Game };
+
+          if (!row?.game_state) return;
+
+          applyingRemote.current = true;
+          setGame(row.game_state);
+
+          setTimeout(() => {
+            applyingRemote.current = false;
+          }, 0);
+
+          setSyncStatus("synced");
+        }
+      )
+      .subscribe();
+
+    return () => {
+      mounted = false;
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!cloudLoaded.current || applyingRemote.current) return;
+
+    setSyncStatus("syncing");
+
+    const timeout = setTimeout(async () => {
+      const { error } = await supabase
+        .from("rummy_current_game")
+        .upsert(
+          {
+            id: CURRENT_GAME_ID,
+            game_state: game,
+            updated_at: new Date().toISOString()
+          },
+          { onConflict: "id" }
+        );
+
+      if (error) {
+        setSyncStatus("offline");
+        return;
+      }
+
+      setSyncStatus("synced");
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [game]);
+
+
 
   const rounds = useMemo(() => activeRounds(game.rounds), [game.rounds]);
   const scoreTotals = useMemo(() => totals(game), [game]);
@@ -143,7 +237,7 @@ export default function RummyApp() {
       <div className="ui">
         <header className="header">
           <button type="button" onClick={toggleStarter} className="glass-soft pill">Starter: {game.players.find((player) => player.id === game.starterId)?.name || "You"}</button>
-          <button type="button" onClick={() => setSettingsOpen(true)} className="glass-soft pill">{game.gameId ? `${game.gameName} · ${game.targetScore}` : "No game"}</button>
+          <button type="button" onClick={() => setSettingsOpen(true)} className="glass-soft pill">{game.gameId ? `${game.gameName} · ${game.targetScore}` : "No game"}<span className={`sync-dot sync-${syncStatus}`} /></button>
         </header>
 
         <section className="glass scoreboard">
