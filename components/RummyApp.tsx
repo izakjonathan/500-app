@@ -52,6 +52,7 @@ export default function RummyApp() {
   const [syncStatus, setSyncStatus] = useState<"loading" | "synced" | "syncing" | "offline">("loading");
   const cloudLoaded = useRef(false);
   const applyingRemote = useRef(false);
+  const initialSyncFinished = useRef(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -86,7 +87,20 @@ export default function RummyApp() {
 
       if (data?.game_state) {
         applyingRemote.current = true;
-        setGame(data.game_state as Game);
+
+        const remoteGame = data.game_state as Game;
+
+        // Only use remote if it actually contains rounds or a real game.
+        if (
+          remoteGame?.rounds?.length > 0 ||
+          remoteGame?.gameId
+        ) {
+          setGame(remoteGame);
+
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteGame));
+          } catch {}
+        }
 
         setTimeout(() => {
           applyingRemote.current = false;
@@ -94,6 +108,7 @@ export default function RummyApp() {
       }
 
       cloudLoaded.current = true;
+      initialSyncFinished.current = true;
       setSyncStatus("synced");
     }
 
@@ -133,7 +148,20 @@ export default function RummyApp() {
   }, []);
 
   useEffect(() => {
-    if (!cloudLoaded.current || applyingRemote.current) return;
+    if (
+      !cloudLoaded.current ||
+      applyingRemote.current ||
+      !initialSyncFinished.current
+    ) return;
+
+    // Never overwrite cloud with the untouched default game.
+    if (
+      !game.gameId &&
+      game.rounds.length === 0 &&
+      game.gameName === "No game"
+    ) {
+      return;
+    }
 
     setSyncStatus("syncing");
 
