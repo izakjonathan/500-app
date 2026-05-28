@@ -1109,3 +1109,428 @@ input:disabled{
   overflow:hidden !important;
 }
 
+
+
+/* ===== v56 rebuilt UI to match generated dark glossy mockup ===== */
+
+html,
+body {
+  width: 100% !important;
+  min-height: 100svh !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: #020304 !important;
+}
+
+.app {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  min-height: 100svh !important;
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
+  background: #020304 !important;
+}
+
+.bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100vw !important;
+  min-height: 100svh !important;
+  height: 100svh !important;
+  background-image: url("/bg.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: brightness(.72) contrast(1.12) saturate(.92) !important;
+  pointer-events: none !important;
+}
+
+.ui {
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  padding: calc(var(--safe-top) + 18px) 14px 0 !important;
+}
+
+.header {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  margin: 0 0 18px !important;
+}
+
+.pill {
+  height: 49px !important;
+  border-radius: 999px !important;
+  font-size: 17px !important;
+  font-weight: 850 !important;
+  letter-spacing: -.035em !important;
+  color: rgba(255,255,255,.96) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.012)) !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 10px 24px rgba(0,0,0,.34) !important;
+  backdrop-filter: blur(20px) saturate(150%) brightness(.82) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(.82) !important;
+}
+
+.glass,
+.glass-soft {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.018) 48%, rgba(0,0,0,.2)) !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -1px 0 rgba(255,255,255,.055),
+    0 18px 42px rgba(0,0,0,.44) !important;
+  backdrop-filter: blur(18px) saturate(160%) brightness(.86) contrast(1.12) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(160%) brightness(.86) contrast(1.12) !important;
+}
+
+.glass::before,
+.glass-soft::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  border-radius: inherit !important;
+  background:
+    radial-gradient(circle at 8% 16%, rgba(255,255,255,.18), transparent 16%),
+    radial-gradient(circle at 92% 55%, rgba(255,255,255,.10), transparent 18%),
+    linear-gradient(180deg, rgba(255,255,255,.10), transparent 38%) !important;
+}
+
+.scoreboard {
+  position: relative !important;
+  z-index: 1 !important;
+  border-radius: 32px !important;
+  padding: 22px 20px 18px !important;
+  margin: 0 0 16px !important;
+  overflow: hidden !important;
+}
+
+.label {
+  font-size: 13px !important;
+  letter-spacing: .28em !important;
+  margin: 0 0 18px !important;
+  color: rgba(255,255,255,.68) !important;
+}
+
+.player-card {
+  min-height: 86px !important;
+  border-radius: 27px !important;
+  grid-template-columns: 58px 1fr auto !important;
+  gap: 18px !important;
+  padding: 13px 20px !important;
+  margin-bottom: 10px !important;
+  background: linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.05)) !important;
+}
+
+.ring {
+  width: 48px !important;
+  height: 48px !important;
+  border-width: 5px !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+}
+
+.player-name {
+  font-size: 23px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.055em !important;
+}
+
+.progress {
+  margin-top: 13px !important;
+  max-width: 230px !important;
+  height: 6px !important;
+  background: rgba(255,255,255,.15) !important;
+}
+
+.total {
+  font-size: 56px !important;
+  font-weight: 950 !important;
+  letter-spacing: -.095em !important;
+}
+
+.rounds {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  overflow: visible !important;
+  margin: 0 0 16px !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.rounds-card {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  position: relative !important;
+  width: 100% !important;
+  min-height: 168px !important;
+  height: auto !important;
+  padding: 26px 22px 23px !important;
+  border-radius: 32px !important;
+  overflow: hidden !important;
+  display: grid !important;
+  grid-template-rows: auto 1fr !important;
+  align-items: center !important;
+  gap: 18px !important;
+  text-align: left !important;
+  color: inherit !important;
+  clip-path: none !important;
+  transform: translateZ(0) !important;
+  isolation: isolate !important;
+}
+
+.rounds-card::before {
+  border-radius: inherit !important;
+  inset: 0 !important;
+}
+
+.last-round-top {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 16px !important;
+}
+
+.last-round-label {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 17px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .28em !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  color: rgba(255,255,255,.72) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.last-round-number {
+  flex: 0 0 auto !important;
+  display: block !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 30px !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -.06em !important;
+  color: rgba(255,255,255,.98) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.last-round-grid {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: center !important;
+}
+
+.last-round-player {
+  min-width: 0 !important;
+  min-height: 76px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  gap: 9px !important;
+  text-align: center !important;
+}
+
+.last-round-player:not(:last-child) {
+  border-right: 1px solid rgba(255,255,255,.18) !important;
+}
+
+.last-round-player-name {
+  font-size: 18px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+}
+
+.last-round-player-score {
+  font-size: 38px !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  letter-spacing: -.075em !important;
+  color: #fff !important;
+  margin: 0 !important;
+}
+
+.last-round-hint {
+  display: none !important;
+}
+
+.empty-title {
+  position: relative !important;
+  z-index: 2 !important;
+  align-self: end !important;
+  font-size: 29px !important;
+  line-height: 1.05 !important;
+  font-weight: 950 !important;
+  letter-spacing: -.065em !important;
+  margin: 0 !important;
+}
+
+.empty-sub {
+  position: relative !important;
+  z-index: 2 !important;
+  align-self: start !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  color: rgba(255,255,255,.62) !important;
+  margin: 0 !important;
+}
+
+.dock {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 0 14px calc(var(--safe-bottom) + 20px) !important;
+  margin: 0 !important;
+}
+
+.dock-panel {
+  border-radius: 32px !important;
+  padding: 18px 18px 19px !important;
+  overflow: hidden !important;
+}
+
+.input-row {
+  border-radius: 0 !important;
+  padding: 0 0 18px !important;
+  margin: 0 0 18px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.input-row:first-child {
+  border-bottom: 1px solid rgba(255,255,255,.15) !important;
+}
+
+.input-main {
+  grid-template-columns: 70px 48px 1fr 48px !important;
+  gap: 14px !important;
+}
+
+.input-name {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.055em !important;
+}
+
+.icon-btn {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 18px !important;
+  font-size: 32px !important;
+  background: rgba(255,255,255,.075) !important;
+}
+
+.round-input {
+  font-size: 38px !important;
+  font-weight: 950 !important;
+}
+
+.quick-grid {
+  margin-top: 18px !important;
+  gap: 12px !important;
+}
+
+.quick {
+  height: 41px !important;
+  border-radius: 999px !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  background: rgba(255,255,255,.07) !important;
+}
+
+.penalties {
+  gap: 16px !important;
+  margin: 0 0 16px !important;
+}
+
+.penalty {
+  height: 54px !important;
+  border-radius: 999px !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: rgba(255,235,235,.95) !important;
+  background: linear-gradient(180deg, rgba(177,31,31,.72), rgba(118,20,24,.72)) !important;
+}
+
+.add-round {
+  height: 70px !important;
+  border-radius: 999px !important;
+  display: grid !important;
+  grid-template-columns: 1fr 44px !important;
+  align-items: center !important;
+  padding: 0 22px 0 64px !important;
+  font-size: 28px !important;
+  font-weight: 950 !important;
+}
+
+.add-round span:first-child {
+  justify-self: center !important;
+}
+
+.add-round-plus {
+  justify-self: end !important;
+  width: 37px !important;
+  height: 37px !important;
+  border-radius: 999px !important;
+  display: grid !important;
+  place-items: center !important;
+  color: #65ee9c !important;
+  border: 2px solid rgba(101,238,156,.75) !important;
+  font-size: 30px !important;
+  line-height: 1 !important;
+  font-weight: 650 !important;
+}
+
+@media (max-height: 760px) {
+  .ui { padding-top: calc(var(--safe-top) + 12px) !important; }
+  .header { margin-bottom: 12px !important; }
+  .pill { height: 44px !important; font-size: 15px !important; }
+  .scoreboard { padding: 18px 18px 15px !important; margin-bottom: 14px !important; }
+  .player-card { min-height: 72px !important; }
+  .total { font-size: 45px !important; }
+  .rounds-card { min-height: 145px !important; padding: 22px 20px 19px !important; border-radius: 30px !important; }
+  .last-round-label { font-size: 14px !important; }
+  .last-round-number { font-size: 25px !important; }
+  .last-round-player { min-height: 60px !important; }
+  .last-round-player-score { font-size: 32px !important; }
+  .dock-panel { padding: 15px !important; }
+  .input-main { grid-template-columns: 62px 42px 1fr 42px !important; }
+  .icon-btn { width: 42px !important; height: 42px !important; }
+  .round-input { font-size: 32px !important; }
+  .quick { height: 35px !important; font-size: 16px !important; }
+  .penalty { height: 48px !important; font-size: 19px !important; }
+  .add-round { height: 60px !important; font-size: 24px !important; }
+}

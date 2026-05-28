@@ -524,7 +524,7 @@ export default function RummyApp() {
           {game.players.map((player) => (
             <div key={player.id} className="input-row input-transition">
               <div className="input-main">
-                <div className="input-name">{player.name}</div>
+                <div className="input-name" style={{ color: player.color }}>{player.name}</div>
                 <button type="button" disabled={isCommitting} onClick={() => negative(player.id)} className="icon-btn">−</button>
                 <input disabled={isCommitting} value={inputs[player.id] || ""} onChange={(event) => setInputs((previous: Record<string, string>) => ({ ...previous, [player.id]: event.target.value }))} inputMode="decimal" placeholder="0" className="round-input" />
                 <button type="button" disabled={isCommitting} onClick={() => setClosedBy(closedBy === player.id ? null : player.id)} className={`icon-btn ${closedBy === player.id ? "active" : ""}`}>✓</button>
@@ -535,7 +535,7 @@ export default function RummyApp() {
           <div className="penalties" style={{ gridTemplateColumns: `repeat(${game.players.length}, minmax(0, 1fr))` }}>
             {game.players.map((player) => <button key={player.id} disabled={isCommitting} type="button" onClick={() => addPenalty(player.id)} className="penalty">-50 {player.name}</button>)}
           </div>
-          <button type="button" disabled={isCommitting} onClick={addRound} className="glass-soft add-round">{isCommitting ? "Adding…" : "Add round"}</button>
+          <button type="button" disabled={isCommitting} onClick={addRound} className="glass-soft add-round"><span>{isCommitting ? "Adding…" : "Add round"}</span><span className="add-round-plus">+</span></button>
         </div>
       </section>
 

@@ -1,0 +1,1 @@
+Rebuilt visual system to match the generated mockup: darker glass, round last-round card, two-column last round layout, dock divider, red penalty buttons, add-round plus button, natural flow to avoid bottom clipping.
