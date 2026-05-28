@@ -960,3 +960,56 @@ input {
   background:#ff7b7b;
   color:#ff7b7b;
 }
+
+
+/* ===== v51 local-first realtime polish ===== */
+.score-transition,
+.round-transition,
+.input-transition,
+.progress-fill,
+.total,
+.last-round-player-score{
+  transition:
+    transform .18s ease,
+    opacity .18s ease,
+    filter .18s ease,
+    width .22s ease;
+}
+
+.player-card:active,
+.rounds-card:active,
+.quick:active,
+.penalty:active,
+.add-round:active,
+.icon-btn:active{
+  transform: scale(.985);
+}
+
+.dock-panel.is-committing{
+  filter: saturate(.92) brightness(.96);
+}
+
+.dock-panel.is-committing .input-row,
+.dock-panel.is-committing .quick,
+.dock-panel.is-committing .penalty,
+.dock-panel.is-committing .icon-btn{
+  opacity: .78;
+}
+
+button:disabled,
+input:disabled{
+  cursor: default;
+}
+
+.add-round:disabled{
+  opacity: .86;
+}
+
+.sync-line{
+  margin:-4px 0 14px;
+  text-align:center;
+  font-size:12px;
+  font-weight:650;
+  color:rgba(255,255,255,.58);
+  text-transform:capitalize;
+}
