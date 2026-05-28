@@ -1536,167 +1536,69 @@ body {
 }
 
 
-/* ===== v57 compact UI scaling ===== */
+/* ===== v58 ACTUAL COMPACT SCREEN-FIT OVERRIDE ===== */
 
-.ui{
-  padding-top:calc(var(--safe-top) + 10px) !important;
+.ui{padding:calc(var(--safe-top) + 4px) 14px 0!important}
+.header{gap:8px!important;margin:0 0 6px!important}
+.pill{height:30px!important;min-height:30px!important;max-height:30px!important;padding:0 9px!important;font-size:11px!important;line-height:1!important;font-weight:800!important}
+
+.scoreboard{border-radius:19px!important;padding:7px 10px 7px!important;margin:0 0 6px!important}
+.label{font-size:7px!important;line-height:1!important;letter-spacing:.22em!important;margin:0 0 5px!important}
+.player-card{min-height:36px!important;height:36px!important;max-height:36px!important;border-radius:14px!important;grid-template-columns:27px 1fr auto!important;gap:7px!important;padding:4px 8px!important;margin-bottom:4px!important}
+.ring{width:24px!important;height:24px!important;min-width:24px!important;border-width:2px!important;font-size:6px!important;line-height:1!important}
+.player-name{font-size:12px!important;line-height:1!important;font-weight:850!important}
+.progress{margin-top:3px!important;height:2px!important;max-width:125px!important}
+.total{font-size:23px!important;line-height:.85!important;font-weight:950!important}
+
+.rounds{margin:0 0 6px!important}
+.rounds-card{min-height:70px!important;height:70px!important;max-height:70px!important;border-radius:18px!important;padding:9px 12px 8px!important;gap:4px!important;display:grid!important;grid-template-rows:12px 1fr!important;overflow:hidden!important}
+.last-round-top{min-height:12px!important;height:12px!important;line-height:1!important}
+.last-round-label{font-size:7px!important;line-height:1!important;letter-spacing:.18em!important}
+.last-round-number{font-size:14px!important;line-height:1!important}
+.last-round-grid{min-height:0!important;height:37px!important;align-items:center!important}
+.last-round-player{min-height:33px!important;height:33px!important;gap:2px!important}
+.last-round-player-name{font-size:9px!important;line-height:1!important}
+.last-round-player-score{font-size:18px!important;line-height:.9!important}
+.empty-title{font-size:17px!important;line-height:1!important}
+.empty-sub{font-size:10px!important;line-height:1.1!important}
+
+.dock{padding:0 14px calc(var(--safe-bottom) + 6px)!important}
+.dock-panel{border-radius:19px!important;padding:7px 9px 8px!important}
+.input-row{padding:0 0 6px!important;margin:0 0 6px!important}
+.input-main{grid-template-columns:38px 25px 1fr 25px!important;gap:6px!important}
+.input-name{font-size:12px!important;line-height:1!important;font-weight:850!important}
+.icon-btn{width:25px!important;height:25px!important;min-height:25px!important;border-radius:9px!important;font-size:16px!important;line-height:1!important}
+.round-input{height:25px!important;min-height:25px!important;font-size:18px!important;line-height:1!important}
+.quick-grid{margin-top:5px!important;gap:5px!important}
+.quick{height:19px!important;min-height:19px!important;border-radius:999px!important;font-size:9px!important;line-height:1!important;font-weight:850!important}
+.penalties{gap:6px!important;margin:0 0 6px!important}
+.penalty{height:26px!important;min-height:26px!important;border-radius:999px!important;font-size:11px!important;line-height:1!important;font-weight:850!important}
+.add-round{height:34px!important;min-height:34px!important;border-radius:999px!important;font-size:15px!important;line-height:1!important;padding:0 11px 0 34px!important;grid-template-columns:1fr 20px!important}
+.add-round-plus{width:19px!important;height:19px!important;font-size:15px!important;border-width:2px!important}
+
+.modal,.sheet{border-radius:20px!important;padding:10px!important}
+.modal-title{font-size:8px!important;margin-bottom:8px!important}
+.modal-btn{height:36px!important;border-radius:12px!important;font-size:11px!important}
+.analytics-grid{gap:5px!important;margin-bottom:7px!important}
+.analytics-grid div{min-height:38px!important;border-radius:11px!important}
+.analytics-grid span{font-size:7px!important}
+.analytics-grid strong{font-size:11px!important}
+
+@media (min-height: 761px){
+  .ui{padding-top:calc(var(--safe-top) + 6px)!important}
+  .pill{height:32px!important;min-height:32px!important;max-height:32px!important;font-size:12px!important}
+  .scoreboard{padding:8px 11px 8px!important;border-radius:21px!important}
+  .player-card{min-height:39px!important;height:39px!important;max-height:39px!important;border-radius:15px!important}
+  .ring{width:26px!important;height:26px!important}
+  .player-name{font-size:13px!important}
+  .total{font-size:25px!important}
+  .rounds-card{min-height:78px!important;height:78px!important;max-height:78px!important;border-radius:20px!important}
+  .last-round-player-score{font-size:20px!important}
+  .dock-panel{border-radius:21px!important;padding:8px 10px 9px!important}
+  .input-main{grid-template-columns:42px 28px 1fr 28px!important}
+  .icon-btn{width:28px!important;height:28px!important;min-height:28px!important}
+  .round-input{height:28px!important;min-height:28px!important;font-size:20px!important}
+  .quick{height:21px!important;min-height:21px!important;font-size:10px!important}
+  .penalty{height:29px!important;min-height:29px!important;font-size:12px!important}
+  .add-round{height:37px!important;min-height:37px!important;font-size:16px!important}
 }
-
-.header{
-  gap:10px !important;
-  margin-bottom:12px !important;
-}
-
-.pill{
-  height:42px !important;
-  font-size:14px !important;
-  border-radius:999px !important;
-}
-
-.scoreboard{
-  border-radius:26px !important;
-  padding:16px 16px 13px !important;
-  margin-bottom:12px !important;
-}
-
-.label{
-  font-size:11px !important;
-  margin-bottom:14px !important;
-}
-
-.player-card{
-  min-height:68px !important;
-  border-radius:22px !important;
-  grid-template-columns:46px 1fr auto !important;
-  gap:14px !important;
-  padding:10px 15px !important;
-  margin-bottom:8px !important;
-}
-
-.ring{
-  width:40px !important;
-  height:40px !important;
-  border-width:4px !important;
-  font-size:10px !important;
-}
-
-.player-name{
-  font-size:18px !important;
-}
-
-.progress{
-  margin-top:9px !important;
-  height:5px !important;
-  max-width:180px !important;
-}
-
-.total{
-  font-size:42px !important;
-}
-
-.rounds{
-  margin-bottom:12px !important;
-}
-
-.rounds-card{
-  min-height:128px !important;
-  padding:18px 18px 16px !important;
-  border-radius:26px !important;
-  gap:14px !important;
-}
-
-.last-round-label{
-  font-size:13px !important;
-}
-
-.last-round-number{
-  font-size:22px !important;
-}
-
-.last-round-player{
-  min-height:52px !important;
-  gap:6px !important;
-}
-
-.last-round-player-name{
-  font-size:15px !important;
-}
-
-.last-round-player-score{
-  font-size:28px !important;
-}
-
-.empty-title{
-  font-size:23px !important;
-}
-
-.empty-sub{
-  font-size:14px !important;
-}
-
-.dock{
-  padding:0 14px calc(var(--safe-bottom) + 12px) !important;
-}
-
-.dock-panel{
-  border-radius:26px !important;
-  padding:14px 14px 15px !important;
-}
-
-.input-row{
-  padding-bottom:14px !important;
-  margin-bottom:14px !important;
-}
-
-.input-main{
-  grid-template-columns:58px 40px 1fr 40px !important;
-  gap:10px !important;
-}
-
-.input-name{
-  font-size:18px !important;
-}
-
-.icon-btn{
-  width:40px !important;
-  height:40px !important;
-  border-radius:14px !important;
-  font-size:24px !important;
-}
-
-.round-input{
-  font-size:30px !important;
-}
-
-.quick-grid{
-  margin-top:12px !important;
-  gap:8px !important;
-}
-
-.quick{
-  height:34px !important;
-  font-size:15px !important;
-}
-
-.penalties{
-  gap:10px !important;
-  margin-bottom:12px !important;
-}
-
-.penalty{
-  height:42px !important;
-  font-size:18px !important;
-}
-
-.add-round{
-  height:56px !important;
-  font-size:22px !important;
-  padding:0 18px 0 50px !important;
-}
-
-.add-round-plus{
-  width:31px !important;
-  height:31px !important;
-  font-size:24px !important;
-}
-
