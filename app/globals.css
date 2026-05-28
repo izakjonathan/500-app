@@ -1739,3 +1739,113 @@ body{
   border-radius:999px !important;
 }
 
+
+
+/* ===== v60 balanced top spacing ===== */
+
+/* More breathing room near notch/status area */
+.ui{
+  padding-top:calc(var(--safe-top) + 12px) !important;
+}
+
+/* Slightly larger pills again */
+.header{
+  gap:10px !important;
+  margin-bottom:9px !important;
+}
+
+.pill{
+  height:38px !important;
+  min-height:38px !important;
+  max-height:38px !important;
+  padding:0 14px !important;
+  font-size:13px !important;
+  border-radius:999px !important;
+}
+
+/* Scoreboard relaxed again */
+.scoreboard{
+  padding:11px 13px 11px !important;
+  border-radius:24px !important;
+  margin-bottom:8px !important;
+}
+
+.label{
+  font-size:9px !important;
+  margin-bottom:8px !important;
+}
+
+/* Slightly taller scoreboard rows */
+.player-card{
+  min-height:48px !important;
+  height:48px !important;
+  max-height:48px !important;
+  border-radius:18px !important;
+  grid-template-columns:32px 1fr auto !important;
+  gap:10px !important;
+  padding:6px 11px !important;
+  margin-bottom:6px !important;
+}
+
+.ring{
+  width:29px !important;
+  height:29px !important;
+  min-width:29px !important;
+  font-size:7px !important;
+}
+
+.player-name{
+  font-size:15px !important;
+}
+
+/* Bigger totals again */
+.total{
+  font-size:31px !important;
+  line-height:.9 !important;
+}
+
+/* Slightly more visible progress */
+.progress{
+  height:3px !important;
+  margin-top:5px !important;
+  opacity:.95 !important;
+}
+
+/* Keep rounds compact but not crushed */
+.rounds{
+  margin-bottom:7px !important;
+}
+
+.rounds-card{
+  min-height:88px !important;
+  height:88px !important;
+  max-height:88px !important;
+  border-radius:22px !important;
+  padding:11px 14px 10px !important;
+}
+
+.last-round-label{
+  font-size:8px !important;
+}
+
+.last-round-number{
+  font-size:16px !important;
+}
+
+.last-round-player-name{
+  font-size:10px !important;
+}
+
+.last-round-player-score{
+  font-size:21px !important;
+}
+
+/* Lower dock remains compact */
+.dock{
+  padding-bottom:calc(var(--safe-bottom) + 5px) !important;
+}
+
+.dock-panel{
+  border-radius:21px !important;
+}
+
