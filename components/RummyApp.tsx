@@ -2,6 +2,7 @@
 "use client";
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { CURRENT_GAME_ID, supabase } from "../lib/supabaseClient";
 
 type Player = { id: string; name: string; color: string };
@@ -23,6 +24,7 @@ const HISTORY_KEY = "rummy500_clean_v51_history";
 const CLOUD_UPDATED_KEY = "rummy500_clean_v51_cloud_updated_at";
 const CLIENT_ID_KEY = "rummy500_clean_v51_client_id";
 const SAVE_DEBOUNCE_MS = 700;
+const PENDING_SYNC_KEY = "rummy500_clean_v52_pending_sync";
 
 function createDefaultGame(): Game {
   return { gameId: null, gameName: "No game", players: DEFAULT_PLAYERS.slice(0, 2), targetScore: 1500, starterId: "p1", rounds: [], status: "active", winnerId: null };
@@ -59,6 +61,31 @@ function getClientId() {
   localStorage.setItem(CLIENT_ID_KEY, id);
   return id;
 }
+
+function getAnalytics(game: Game, history: HistoryItem[]) {
+  const rounds = activeRounds(game.rounds);
+  const scoreTotals = totals(game);
+  const totalRoundPoints = rounds.reduce((sum, round) => {
+    return sum + game.players.reduce((inner, player) => inner + Number(round.scores[player.id] || 0), 0);
+  }, 0);
+
+  const leader = [...game.players].sort((a, b) => (scoreTotals[b.id] || 0) - (scoreTotals[a.id] || 0))[0];
+
+  return {
+    roundsPlayed: rounds.length,
+    averageRoundPoints: rounds.length ? Math.round(totalRoundPoints / rounds.length) : 0,
+    leaderName: leader?.name || "None",
+    gamesFinished: history.length
+  };
+}
+
+function getShareUrl(game: Game) {
+  if (typeof window === "undefined") return "";
+  const url = new URL(window.location.href);
+  url.searchParams.set("game", game.gameId || CURRENT_GAME_ID);
+  return url.toString();
+}
+
 
 type ScoreboardProps = { game: Game; scoreTotals: Record<string, number> };
 const Scoreboard = memo(function Scoreboard({ game, scoreTotals }: ScoreboardProps) {
@@ -98,6 +125,7 @@ export default function RummyApp() {
   const [names, setNames] = useState<string[]>(DEFAULT_PLAYERS.map((p) => p.name));
   const [syncStatus, setSyncStatus] = useState<SyncStatus>("loading");
   const [isCommitting, setIsCommitting] = useState(false);
+  const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "shared">("idle");
 
   const clientId = useRef("");
   const cloudLoaded = useRef(false);
@@ -114,6 +142,13 @@ export default function RummyApp() {
       clientId.current = getClientId();
       window.history.scrollRestoration = "manual";
       window.scrollTo(0, 0);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
     }
   }, []);
 
@@ -134,6 +169,7 @@ export default function RummyApp() {
     if (!cloudLoaded.current || applyingRemote.current || !initialSyncFinished.current || isUntouchedDefault(nextGame)) return;
 
     pendingGame.current = nextGame;
+    try { localStorage.setItem(PENDING_SYNC_KEY, JSON.stringify(nextGame)); } catch {}
     setSyncStatus("syncing");
 
     if (saveTimer.current) clearTimeout(saveTimer.current);
@@ -177,6 +213,7 @@ export default function RummyApp() {
       }
 
       pendingGame.current = null;
+      try { localStorage.removeItem(PENDING_SYNC_KEY); } catch {}
       setSyncStatus("synced");
     }, SAVE_DEBOUNCE_MS);
   }, []);
@@ -302,10 +339,28 @@ export default function RummyApp() {
     };
   }, []);
 
+
+  useEffect(() => {
+    function flushPendingSync() {
+      try {
+        const pending = localStorage.getItem(PENDING_SYNC_KEY);
+        if (pending) {
+          queueCloudSave(JSON.parse(pending) as Game);
+        }
+      } catch {}
+    }
+
+    window.addEventListener("online", flushPendingSync);
+    flushPendingSync();
+
+    return () => window.removeEventListener("online", flushPendingSync);
+  }, [queueCloudSave]);
+
   const rounds = useMemo(() => activeRounds(game.rounds), [game.rounds]);
   const scoreTotals = useMemo(() => totals(game), [game]);
   const winner = game.winnerId ? game.players.find((player) => player.id === game.winnerId) : null;
   const latestRound = rounds[rounds.length - 1];
+  const analytics = useMemo(() => getAnalytics(game, history), [game, history]);
 
   function createGame() {
     const players = DEFAULT_PLAYERS.slice(0, playerCount).map((player, index) => ({ ...player, name: names[index]?.trim() || player.name }));
@@ -387,8 +442,33 @@ export default function RummyApp() {
   function newSetup() { setGame(createDefaultGame()); setInputs({}); setClosedBy(null); setGameOpen(true); }
   function saveGame() { queueCloudSave(game); setSettingsOpen(false); }
 
+  async function shareGame() {
+    const url = getShareUrl(game);
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Rummy 500",
+          text: "Join the current Rummy 500 game",
+          url
+        });
+        setShareStatus("shared");
+      } else {
+        await navigator.clipboard.writeText(url);
+        setShareStatus("copied");
+      }
+    } catch {
+      try {
+        await navigator.clipboard.writeText(url);
+        setShareStatus("copied");
+      } catch {}
+    }
+
+    setTimeout(() => setShareStatus("idle"), 1600);
+  }
+
   return (
-    <main className="app">
+    <motion.main className="app" initial={{ opacity: 0.98 }} animate={{ opacity: 1 }} transition={{ duration: 0.18 }}>
       <div className="bg" aria-hidden="true" />
       <div className="ui">
         <header className="header">
@@ -450,6 +530,15 @@ export default function RummyApp() {
           <section className="glass modal settings-modal">
             <div className="modal-title">Settings</div>
             <div className="sync-line">Cloud sync: {syncStatus}</div>
+            <div className="analytics-grid">
+              <div><span>Rounds</span><strong>{analytics.roundsPlayed}</strong></div>
+              <div><span>Avg</span><strong>{analytics.averageRoundPoints}</strong></div>
+              <div><span>Leader</span><strong>{analytics.leaderName}</strong></div>
+              <div><span>Games</span><strong>{analytics.gamesFinished}</strong></div>
+            </div>
+            <button type="button" onClick={shareGame} className="glass-soft modal-btn share-game-btn">
+              {shareStatus === "copied" ? "Copied link" : shareStatus === "shared" ? "Shared" : "Share current game"}
+            </button>
             <div className="modal-grid">
               <button type="button" onClick={undo} className="glass-soft modal-btn">Undo</button>
               <button type="button" onClick={() => { setSettingsOpen(false); setGameOpen(true); }} className="glass-soft modal-btn">Game</button>
@@ -513,6 +602,6 @@ export default function RummyApp() {
           </section>
         </>
       )}
-    </main>
+    </motion.main>
   );
 }

@@ -1013,3 +1013,118 @@ input:disabled{
   color:rgba(255,255,255,.58);
   text-transform:capitalize;
 }
+
+
+/* ===== v52 platform foundation: animation, analytics, PWA, visual system v2 ===== */
+
+:root{
+  --glass-line: rgba(255,255,255,.12);
+  --glass-fill-a: rgba(255,255,255,.052);
+  --glass-fill-b: rgba(255,255,255,.010);
+  --native-spring: cubic-bezier(.2,.9,.2,1);
+}
+
+.glass{
+  background:
+    linear-gradient(135deg, var(--glass-fill-a), var(--glass-fill-b)) !important;
+  border-color: var(--glass-line) !important;
+}
+
+.player-card,
+.rounds-card,
+.dock-panel,
+.modal,
+.sheet{
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.score-transition,
+.round-transition,
+.input-transition{
+  transition:
+    transform .22s var(--native-spring),
+    opacity .22s var(--native-spring),
+    filter .22s var(--native-spring);
+}
+
+.is-committing{
+  pointer-events:none;
+}
+
+.is-committing .input-row{
+  opacity:.72;
+  filter:saturate(.8);
+  transform:scale(.995);
+}
+
+.add-round:disabled,
+.quick:disabled,
+.penalty:disabled,
+.icon-btn:disabled,
+.round-input:disabled{
+  opacity:.62;
+}
+
+.analytics-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin:0 0 12px;
+}
+
+.analytics-grid div{
+  min-height:54px;
+  border-radius:17px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+
+.analytics-grid span{
+  font-size:9px;
+  line-height:1;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:rgba(255,255,255,.42);
+  font-weight:760;
+}
+
+.analytics-grid strong{
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:14px;
+  line-height:1;
+  color:rgba(255,255,255,.88);
+}
+
+.share-game-btn{
+  width:100%;
+  margin-bottom:10px;
+}
+
+/* subtle live/sync material pulse */
+.sync-syncing,
+.sync-loading{
+  animation: syncPulse 1.1s ease-in-out infinite;
+}
+
+@keyframes syncPulse{
+  0%,100%{ transform:translateY(-50%) scale(.85); opacity:.65; }
+  50%{ transform:translateY(-50%) scale(1.18); opacity:1; }
+}
+
+/* PWA standalone spacing safety */
+@media (display-mode: standalone){
+  .ui{
+    padding-top:calc(var(--safe-top) + 14px) !important;
+  }
+}
