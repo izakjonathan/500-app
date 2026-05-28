@@ -1079,3 +1079,33 @@ input:disabled{
     font-size: 28px !important;
   }
 }
+
+
+/* ===== v55 actual bottom radius fix ===== */
+
+.rounds,
+.rounds-card,
+.rounds-card::before,
+.rounds-card::after{
+  border-bottom-left-radius:34px !important;
+  border-bottom-right-radius:34px !important;
+}
+
+.rounds-card{
+  overflow:hidden !important;
+  clip-path: inset(0 round 34px) !important;
+  isolation:isolate !important;
+  transform:translateZ(0) !important;
+  backface-visibility:hidden !important;
+}
+
+.rounds-card > *{
+  position:relative;
+  z-index:2;
+}
+
+.rounds-card::before,
+.rounds-card::after{
+  overflow:hidden !important;
+}
+
