@@ -240,24 +240,8 @@ input {
   overflow: hidden;
 }
 
-.rounds-card {
-  height: 100%;
-  min-height: 0;
-  border-radius: 28px;
-  padding: 12px;
-  overflow: hidden;
-  scrollbar-width: none;
-}
-
 .rounds-card::-webkit-scrollbar {
   display: none;
-}
-
-.empty-rounds {
-  position: relative;
-  z-index: 1;
-  border-radius: 22px;
-  padding: 20px;
 }
 
 .empty-title {
@@ -556,67 +540,6 @@ input {
 }
 
 
-.last-round{
-  position:relative;
-  z-index:1;
-  border-radius:24px;
-  padding:18px;
-  min-height:160px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.last-round-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.last-round-label{
-  font-size:14px;
-  font-weight:800;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.58);
-}
-
-.last-round-number{
-  font-size:22px;
-  font-weight:850;
-  letter-spacing:-.05em;
-}
-
-.last-round-grid{
-  display:grid;
-  gap:10px;
-  margin-top:18px;
-}
-
-.last-round-player{
-  text-align:center;
-}
-
-.last-round-player-name{
-  font-size:14px;
-  font-weight:760;
-  margin-bottom:6px;
-}
-
-.last-round-player-score{
-  font-size:34px;
-  font-weight:900;
-  letter-spacing:-.08em;
-}
-
-.last-round-hint{
-  margin-top:18px;
-  text-align:center;
-  font-size:13px;
-  color:rgba(255,255,255,.55);
-}
-
-
 /* ===== v45 UI polish pass ===== */
 
 /* tighter global composition */
@@ -678,20 +601,6 @@ input {
 }
 
 /* rounds indicator: more compact, less empty */
-.rounds-card{
-  border-radius: 27px !important;
-  padding: 12px !important;
-}
-
-.empty-rounds{
-  border-radius: 22px !important;
-  padding: 18px !important;
-  min-height: 120px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
-
 .empty-title{
   font-size: 20px !important;
 }
@@ -699,42 +608,6 @@ input {
 .empty-sub{
   font-size: 13px !important;
   color: rgba(255,255,255,.56) !important;
-}
-
-.last-round{
-  min-height: 128px !important;
-  border-radius: 22px !important;
-  padding: 15px !important;
-}
-
-.last-round-label{
-  font-size: 11px !important;
-  letter-spacing: .14em !important;
-  color: rgba(255,255,255,.52) !important;
-}
-
-.last-round-number{
-  font-size: 18px !important;
-}
-
-.last-round-grid{
-  margin-top: 13px !important;
-  gap: 8px !important;
-}
-
-.last-round-player-name{
-  font-size: 12px !important;
-  margin-bottom: 4px !important;
-}
-
-.last-round-player-score{
-  font-size: 28px !important;
-}
-
-.last-round-hint{
-  margin-top: 12px !important;
-  font-size: 11px !important;
-  color: rgba(255,255,255,.46) !important;
 }
 
 /* dock balance */
@@ -871,111 +744,12 @@ input {
 }
 
 
-/* ===== v47 rounds card cleanup ===== */
-
-.rounds-card{
-  display:flex !important;
-  align-items:stretch !important;
-  justify-content:stretch !important;
-  min-height:170px !important;
-  padding:18px !important;
-}
-
-.empty-rounds,
-.last-round{
-  width:100% !important;
-  height:100% !important;
-  min-height:0 !important;
-  border-radius:0 !important;
-  background:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
-  backdrop-filter:none !important;
-  -webkit-backdrop-filter:none !important;
-  padding:0 !important;
-}
-
-.empty-rounds{
-  display:flex !important;
-  flex-direction:column !important;
-  justify-content:center !important;
-}
-
-.last-round{
-  display:flex !important;
-  flex-direction:column !important;
-  justify-content:space-between !important;
-}
-
-.rounds-popup-title{
-  justify-content:center !important;
-}
-
-
-/* ===== v48 round card radius fix ===== */
-
-.rounds-card{
-  overflow:hidden !important;
-  border-radius:28px !important;
-}
-
-.empty-rounds,
-.last-round{
-  overflow:hidden !important;
-  border-radius:22px !important;
-  min-height:100% !important;
-}
-
-
-/* v49 sync */
-
-.pill{
-  position:relative;
-}
-
-.sync-dot{
-  position:absolute;
-  right:12px;
-  top:50%;
-  transform:translateY(-50%);
-  width:8px;
-  height:8px;
-  border-radius:999px;
-  background:#82efaa;
-  box-shadow:0 0 12px currentColor;
-}
-
-.sync-loading,
-.sync-syncing{
-  background:#ffd36b;
-  color:#ffd36b;
-}
-
-.sync-synced{
-  background:#82efaa;
-  color:#82efaa;
-}
-
-.sync-offline{
-  background:#ff7b7b;
-  color:#ff7b7b;
-}
-
-
 /* ===== v51 local-first realtime polish ===== */
 .score-transition,
 .round-transition,
 .input-transition,
 .progress-fill,
 .total,
-.last-round-player-score{
-  transition:
-    transform .18s ease,
-    opacity .18s ease,
-    filter .18s ease,
-    width .22s ease;
-}
-
 .player-card:active,
 .rounds-card:active,
 .quick:active,
@@ -1130,108 +904,178 @@ input:disabled{
 }
 
 
-/* ===== v53 rounds card geometry fix ===== */
 
-.rounds{
-  width:100%;
+
+/* ===== v54 REAL rounds card fix - single element card ===== */
+
+.rounds {
+  width: 100% !important;
+  min-height: 0 !important;
+  overflow: visible !important;
 }
 
-.rounds-card{
-  position:relative;
-  overflow:hidden !important;
-  border-radius:34px !important;
-  padding:28px 24px 26px !important;
-  min-height:220px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  box-sizing:border-box;
+.rounds-card {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  min-height: 196px !important;
+  height: auto !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto !important;
+  gap: 18px !important;
+  text-align: left !important;
+  border-radius: 34px !important;
+  padding: 28px 28px 26px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.052), rgba(255,255,255,.010)) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  color: inherit !important;
 }
 
-.last-round{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.rounds-card::before {
+  border-radius: inherit !important;
 }
 
-.last-round-top{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding-bottom:4px;
+.last-round-top {
+  position: relative !important;
+  z-index: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.last-round-label{
-  font-size:15px !important;
-  line-height:1 !important;
-  letter-spacing:.22em !important;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.62);
-  font-weight:800;
-  padding-left:2px;
+.last-round-label {
+  min-width: 0 !important;
+  max-width: calc(100% - 72px) !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 15px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .20em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,.62) !important;
+  font-weight: 850 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.last-round-number{
-  flex-shrink:0;
-  font-size:28px !important;
-  line-height:1 !important;
-  font-weight:900;
-  color:rgba(255,255,255,.95);
-  padding-right:2px;
+.last-round-number {
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.04em !important;
+  color: rgba(255,255,255,.95) !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.last-round-grid{
-  width:100%;
-  align-items:center;
+.last-round-grid {
+  position: relative !important;
+  z-index: 1 !important;
+  display: grid !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.last-round-player{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-height:88px;
+.last-round-player {
+  min-width: 0 !important;
+  min-height: 72px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-align: center !important;
 }
 
-.last-round-player-name{
-  font-size:18px;
-  font-weight:800;
+.last-round-player-name {
+  font-size: 16px !important;
+  line-height: 1 !important;
+  font-weight: 820 !important;
+  margin: 0 !important;
 }
 
-.last-round-player-score{
-  font-size:28px;
-  line-height:1;
-  font-weight:900;
-  color:white;
+.last-round-player-score {
+  font-size: 32px !important;
+  line-height: 1 !important;
+  font-weight: 920 !important;
+  letter-spacing: -.07em !important;
+  color: white !important;
+  margin: 0 !important;
 }
 
-.last-round-hint{
-  text-align:center;
-  font-size:13px;
-  color:rgba(255,255,255,.42);
-  padding-top:2px;
+.last-round-hint {
+  position: relative !important;
+  z-index: 1 !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  color: rgba(255,255,255,.42) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.empty-rounds{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:12px;
+.empty-title {
+  position: relative !important;
+  z-index: 1 !important;
+  align-self: end !important;
+  font-size: 28px !important;
+  line-height: 1.05 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.055em !important;
+  margin: 0 !important;
 }
 
-.empty-title{
-  font-size:28px;
-  line-height:1.05;
-  font-weight:900;
+.empty-sub {
+  position: relative !important;
+  z-index: 1 !important;
+  align-self: start !important;
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+  color: rgba(255,255,255,.52) !important;
+  margin: 0 !important;
 }
 
-.empty-sub{
-  font-size:15px;
-  color:rgba(255,255,255,.5);
+/* Prevent inherited button defaults from creating invisible inner clipping */
+.rounds-card > * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-height: 740px) {
+  .rounds-card {
+    min-height: 174px !important;
+    padding: 24px 24px 22px !important;
+    gap: 14px !important;
+  }
+
+  .last-round-label {
+    font-size: 13px !important;
+  }
+
+  .last-round-number {
+    font-size: 24px !important;
+  }
+
+  .last-round-player {
+    min-height: 58px !important;
+  }
+
+  .last-round-player-score {
+    font-size: 28px !important;
+  }
 }

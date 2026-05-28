@@ -479,28 +479,43 @@ export default function RummyApp() {
         <Scoreboard game={game} scoreTotals={scoreTotals} />
 
         <section className="rounds">
-          <div className="glass rounds-card round-transition" onClick={() => setShowRoundsPopup(true)} role="button">
+          <button
+            type="button"
+            className="glass rounds-card"
+            onClick={() => setShowRoundsPopup(true)}
+            aria-label="Open rounds overview"
+          >
             {rounds.length === 0 ? (
-              <div className="empty-rounds">
+              <>
                 <div className="empty-title">No rounds yet</div>
                 <div className="empty-sub">Tap to view round history</div>
-              </div>
+              </>
             ) : (
-              <div className="last-round">
+              <>
                 <div className="last-round-top">
                   <div className="last-round-label">Last round</div>
                   <div className="last-round-number">#{rounds.length}</div>
                 </div>
-                <div className="last-round-grid" style={{ gridTemplateColumns: `repeat(${game.players.length}, minmax(0, 1fr))` }}>
+
+                <div
+                  className="last-round-grid"
+                  style={{ gridTemplateColumns: `repeat(${game.players.length}, minmax(0, 1fr))` }}
+                >
                   {game.players.map((player) => {
                     const value = Number(latestRound?.scores[player.id] || 0) + (latestRound?.closedBy === player.id ? 15 : 0);
-                    return <div key={player.id} className="last-round-player"><div className="last-round-player-name" style={{ color: player.color }}>{player.name}</div><div className="last-round-player-score">{signed(value)}</div></div>;
+                    return (
+                      <div key={player.id} className="last-round-player">
+                        <div className="last-round-player-name" style={{ color: player.color }}>{player.name}</div>
+                        <div className="last-round-player-score">{signed(value)}</div>
+                      </div>
+                    );
                   })}
                 </div>
+
                 <div className="last-round-hint">Tap for full rounds overview</div>
-              </div>
+              </>
             )}
-          </div>
+          </button>
         </section>
       </div>
 
