@@ -1849,3 +1849,36 @@ body{
   border-radius:21px !important;
 }
 
+
+
+/* v61 alignment fixes */
+.pill{
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+position:relative !important;
+}
+
+.pill .sync-dot{
+position:absolute !important;
+right:12px !important;
+top:50% !important;
+transform:translateY(-50%) !important;
+}
+
+.add-round{
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+position:relative !important;
+}
+
+.add-round-plus{
+position:absolute !important;
+right:14px !important;
+top:50% !important;
+transform:translateY(-50%) !important;
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+}
