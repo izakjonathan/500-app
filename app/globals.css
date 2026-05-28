@@ -1534,3 +1534,169 @@ body {
   .penalty { height: 48px !important; font-size: 19px !important; }
   .add-round { height: 60px !important; font-size: 24px !important; }
 }
+
+
+/* ===== v57 compact UI scaling ===== */
+
+.ui{
+  padding-top:calc(var(--safe-top) + 10px) !important;
+}
+
+.header{
+  gap:10px !important;
+  margin-bottom:12px !important;
+}
+
+.pill{
+  height:42px !important;
+  font-size:14px !important;
+  border-radius:999px !important;
+}
+
+.scoreboard{
+  border-radius:26px !important;
+  padding:16px 16px 13px !important;
+  margin-bottom:12px !important;
+}
+
+.label{
+  font-size:11px !important;
+  margin-bottom:14px !important;
+}
+
+.player-card{
+  min-height:68px !important;
+  border-radius:22px !important;
+  grid-template-columns:46px 1fr auto !important;
+  gap:14px !important;
+  padding:10px 15px !important;
+  margin-bottom:8px !important;
+}
+
+.ring{
+  width:40px !important;
+  height:40px !important;
+  border-width:4px !important;
+  font-size:10px !important;
+}
+
+.player-name{
+  font-size:18px !important;
+}
+
+.progress{
+  margin-top:9px !important;
+  height:5px !important;
+  max-width:180px !important;
+}
+
+.total{
+  font-size:42px !important;
+}
+
+.rounds{
+  margin-bottom:12px !important;
+}
+
+.rounds-card{
+  min-height:128px !important;
+  padding:18px 18px 16px !important;
+  border-radius:26px !important;
+  gap:14px !important;
+}
+
+.last-round-label{
+  font-size:13px !important;
+}
+
+.last-round-number{
+  font-size:22px !important;
+}
+
+.last-round-player{
+  min-height:52px !important;
+  gap:6px !important;
+}
+
+.last-round-player-name{
+  font-size:15px !important;
+}
+
+.last-round-player-score{
+  font-size:28px !important;
+}
+
+.empty-title{
+  font-size:23px !important;
+}
+
+.empty-sub{
+  font-size:14px !important;
+}
+
+.dock{
+  padding:0 14px calc(var(--safe-bottom) + 12px) !important;
+}
+
+.dock-panel{
+  border-radius:26px !important;
+  padding:14px 14px 15px !important;
+}
+
+.input-row{
+  padding-bottom:14px !important;
+  margin-bottom:14px !important;
+}
+
+.input-main{
+  grid-template-columns:58px 40px 1fr 40px !important;
+  gap:10px !important;
+}
+
+.input-name{
+  font-size:18px !important;
+}
+
+.icon-btn{
+  width:40px !important;
+  height:40px !important;
+  border-radius:14px !important;
+  font-size:24px !important;
+}
+
+.round-input{
+  font-size:30px !important;
+}
+
+.quick-grid{
+  margin-top:12px !important;
+  gap:8px !important;
+}
+
+.quick{
+  height:34px !important;
+  font-size:15px !important;
+}
+
+.penalties{
+  gap:10px !important;
+  margin-bottom:12px !important;
+}
+
+.penalty{
+  height:42px !important;
+  font-size:18px !important;
+}
+
+.add-round{
+  height:56px !important;
+  font-size:22px !important;
+  padding:0 18px 0 50px !important;
+}
+
+.add-round-plus{
+  width:31px !important;
+  height:31px !important;
+  font-size:24px !important;
+}
+
