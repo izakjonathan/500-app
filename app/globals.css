@@ -1602,3 +1602,140 @@ body {
   .penalty{height:29px!important;min-height:29px!important;font-size:12px!important}
   .add-round{height:37px!important;min-height:37px!important;font-size:16px!important}
 }
+
+
+/* ===== v59 layout polish ===== */
+
+/* 2. flatten vertical flow */
+.app{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  align-items:stretch !important;
+  min-height:100svh !important;
+  overflow:hidden !important;
+}
+
+/* 3. lock viewport */
+html,
+body{
+  height:100svh !important;
+  min-height:100svh !important;
+  overflow:hidden !important;
+  overscroll-behavior:none !important;
+}
+
+.ui{
+  flex:1 1 auto !important;
+  overflow:hidden !important;
+  padding-bottom:4px !important;
+}
+
+/* tighter vertical rhythm */
+.header{
+  margin-bottom:4px !important;
+}
+
+.scoreboard{
+  margin-bottom:5px !important;
+}
+
+.rounds{
+  margin-bottom:5px !important;
+}
+
+/* 4. true anchored composer dock */
+.dock{
+  position:sticky !important;
+  bottom:0 !important;
+  left:0 !important;
+  right:0 !important;
+  width:100% !important;
+  margin-top:auto !important;
+  z-index:30 !important;
+  padding:0 14px calc(var(--safe-bottom) + 4px) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+.dock-panel{
+  overflow:hidden !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(40,40,40,.42),
+      rgba(22,22,22,.28)
+    ) !important;
+}
+
+/* 5. reduce blur behind controls */
+.glass,
+.glass-soft{
+  backdrop-filter:
+    blur(12px)
+    saturate(135%)
+    brightness(.88) !important;
+
+  -webkit-backdrop-filter:
+    blur(12px)
+    saturate(135%)
+    brightness(.88) !important;
+}
+
+/* cleaner controls */
+.quick{
+  background:rgba(255,255,255,.045) !important;
+}
+
+.icon-btn{
+  background:rgba(255,255,255,.05) !important;
+}
+
+/* 6. tighter margins globally */
+.player-card{
+  margin-bottom:3px !important;
+}
+
+.input-row{
+  margin-bottom:5px !important;
+  padding-bottom:5px !important;
+}
+
+.quick-grid{
+  margin-top:4px !important;
+}
+
+.penalties{
+  margin-bottom:5px !important;
+}
+
+.add-round{
+  margin-top:1px !important;
+}
+
+/* rounds card more balanced */
+.rounds-card{
+  align-content:center !important;
+}
+
+.last-round-grid{
+  align-items:center !important;
+}
+
+/* make scoreboard feel less tall visually */
+.progress{
+  opacity:.85 !important;
+}
+
+/* slight dock separation */
+.dock::before{
+  content:"" !important;
+  position:absolute !important;
+  left:24px !important;
+  right:24px !important;
+  top:-6px !important;
+  height:1px !important;
+  background:rgba(255,255,255,.08) !important;
+  border-radius:999px !important;
+}
+
