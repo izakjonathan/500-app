@@ -1128,3 +1128,110 @@ input:disabled{
     padding-top:calc(var(--safe-top) + 14px) !important;
   }
 }
+
+
+/* ===== v53 rounds card geometry fix ===== */
+
+.rounds{
+  width:100%;
+}
+
+.rounds-card{
+  position:relative;
+  overflow:hidden !important;
+  border-radius:34px !important;
+  padding:28px 24px 26px !important;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  box-sizing:border-box;
+}
+
+.last-round{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.last-round-top{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-bottom:4px;
+}
+
+.last-round-label{
+  font-size:15px !important;
+  line-height:1 !important;
+  letter-spacing:.22em !important;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+  font-weight:800;
+  padding-left:2px;
+}
+
+.last-round-number{
+  flex-shrink:0;
+  font-size:28px !important;
+  line-height:1 !important;
+  font-weight:900;
+  color:rgba(255,255,255,.95);
+  padding-right:2px;
+}
+
+.last-round-grid{
+  width:100%;
+  align-items:center;
+}
+
+.last-round-player{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:88px;
+}
+
+.last-round-player-name{
+  font-size:18px;
+  font-weight:800;
+}
+
+.last-round-player-score{
+  font-size:28px;
+  line-height:1;
+  font-weight:900;
+  color:white;
+}
+
+.last-round-hint{
+  text-align:center;
+  font-size:13px;
+  color:rgba(255,255,255,.42);
+  padding-top:2px;
+}
+
+.empty-rounds{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+}
+
+.empty-title{
+  font-size:28px;
+  line-height:1.05;
+  font-weight:900;
+}
+
+.empty-sub{
+  font-size:15px;
+  color:rgba(255,255,255,.5);
+}
