@@ -1,5 +1,6 @@
-import RummyApp from "../components/RummyApp";
+export const dynamic = 'force-dynamic';
+import { ClientApp } from '@/components/ClientApp';
 
 export default function Page() {
-  return <RummyApp />;
+  return <ClientApp />;
 }
