@@ -492,9 +492,8 @@ export default function RummyApp() {
               </>
             ) : (
               <>
-                <div className="last-round-top">
-                  <div className="last-round-label">Last round</div>
-                  <div className="last-round-number">#{rounds.length}</div>
+                <div className="last-round-top centered">
+                  <div className="last-round-label">LAST ROUND #{rounds.length}</div>
                 </div>
 
                 <div

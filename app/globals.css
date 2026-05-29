@@ -1882,3 +1882,70 @@ display:flex !important;
 align-items:center !important;
 justify-content:center !important;
 }
+
+
+/* v62 */
+.dock{
+  padding-top:14px !important;
+}
+.dock-panel{
+  min-height:380px !important;
+  padding:18px !important;
+}
+
+.input-row{
+  padding-bottom:14px !important;
+  margin-bottom:14px !important;
+}
+
+.input-main{
+  min-height:64px !important;
+}
+
+.icon-btn{
+  width:44px !important;
+  height:44px !important;
+}
+
+.round-input{
+  font-size:42px !important;
+}
+
+.quick{
+  height:42px !important;
+  font-size:18px !important;
+}
+
+.penalty{
+  height:54px !important;
+  font-size:24px !important;
+}
+
+.add-round{
+  height:72px !important;
+  font-size:28px !important;
+}
+
+.last-round-top.centered{
+ display:flex !important;
+ justify-content:center !important;
+ align-items:center !important;
+ width:100% !important;
+}
+
+.last-round-top.centered .last-round-label{
+ text-align:center !important;
+ width:100% !important;
+ font-size:18px !important;
+ letter-spacing:.12em !important;
+}
+
+.rounds-popup-overlay{
+ position:fixed;
+ inset:0;
+ z-index:9999;
+}
+
+.rounds-popup{
+ z-index:10000;
+}
