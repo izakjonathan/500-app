@@ -1,17 +1,22 @@
-import type { Metadata, Viewport } from 'next';
-import type { ReactNode } from 'react';
-import '@/styles/globals.css';
-import { ViewportProvider } from '@/components/system/ViewportProvider';
-import { PWARegister } from '@/components/system/PWARegister';
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Adventure Roulette',
-  description: 'A spontaneous nearby adventure generator.',
-  manifest: '/manifest.webmanifest',
-  appleWebApp: { capable: true, statusBarStyle: 'black-translucent', title: 'Adventure' },
-  icons: { apple: '/icons/apple-touch-icon.png', icon: [{ url: '/icons/icon-192.png', sizes: '192x192' }, { url: '/icons/icon-512.png', sizes: '512x512' }] }
+  title: "Rummy 500",
+  description: "Rummy 500 scoring app",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "Rummy 500", statusBarStyle: "black-translucent" }
 };
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, maximumScale: 1, viewportFit: 'cover', themeColor: '#050507' };
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en"><body><ViewportProvider>{children}<PWARegister /></ViewportProvider></body></html>;
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#050506"
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="en"><body>{children}</body></html>;
 }

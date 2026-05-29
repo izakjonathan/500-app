@@ -1949,3 +1949,73 @@ justify-content:center !important;
 .rounds-popup{
  z-index:10000;
 }
+
+
+/* ===== V63 Adaptive Layout ===== */
+
+/* Last round title like scoreboard */
+.last-round-top.centered .last-round-label{
+  font-size:12px !important;
+  letter-spacing:.28em !important;
+  opacity:.8 !important;
+  font-weight:700 !important;
+}
+
+/* Scores become primary */
+.last-round-player-score{
+  font-size:clamp(28px,4.5vh,42px) !important;
+  font-weight:900 !important;
+}
+
+/* Adaptive screen-height dock */
+.dock{
+  margin-top:auto !important;
+}
+
+.dock-panel{
+  min-height:clamp(280px,38vh,460px) !important;
+  height:auto !important;
+}
+
+.input-main{
+  min-height:clamp(52px,7vh,72px) !important;
+}
+
+.round-input{
+  font-size:clamp(32px,5vh,52px) !important;
+}
+
+.quick{
+  height:clamp(30px,4.5vh,46px) !important;
+  font-size:clamp(13px,2vh,18px) !important;
+}
+
+.penalty{
+  height:clamp(42px,6vh,58px) !important;
+  font-size:clamp(16px,2.8vh,24px) !important;
+}
+
+.add-round{
+  height:clamp(56px,8vh,76px) !important;
+  font-size:clamp(20px,3vh,30px) !important;
+}
+
+/* Popup overlay */
+.rounds-popup-overlay{
+ position:fixed !important;
+ inset:0 !important;
+ z-index:9999 !important;
+ background:rgba(0,0,0,.45) !important;
+ backdrop-filter:blur(8px) !important;
+}
+
+.rounds-popup{
+ position:fixed !important;
+ left:16px !important;
+ right:16px !important;
+ top:12vh !important;
+ bottom:12vh !important;
+ z-index:10000 !important;
+ overflow:auto !important;
+ border-radius:28px !important;
+}
